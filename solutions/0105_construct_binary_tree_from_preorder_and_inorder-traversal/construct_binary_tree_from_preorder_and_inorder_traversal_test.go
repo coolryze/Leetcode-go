@@ -20,7 +20,7 @@ type output struct {
 }
 
 func treeToLevelOrderArray(root *TreeNode) []interface{} {
-	var res []interface{}
+	res := []interface{}{}
 	if root == nil {
 		return res
 	}

@@ -52,7 +52,7 @@ func arrayToTree(nums []interface{}) *TreeNode {
 }
 
 func treeToLevelOrderArray(root *TreeNode) []interface{} {
-	var res []interface{}
+	res := []interface{}{}
 	if root == nil {
 		return res
 	}
