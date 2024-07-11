@@ -10,6 +10,7 @@ func combine(n int, k int) [][]int {
 			temp := make([]int, len(path))
 			copy(temp, path)
 			res = append(res, temp)
+			return
 		}
 
 		for i := start; i <= n; i++ {
