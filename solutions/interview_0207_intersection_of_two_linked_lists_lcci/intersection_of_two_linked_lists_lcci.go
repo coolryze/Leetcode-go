@@ -6,6 +6,26 @@ type ListNode struct {
 }
 
 func getIntersectionNode(headA, headB *ListNode) *ListNode {
+	listA, listB := headA, headB
+
+	for listA != listB {
+		if listA == nil {
+			listA = headB
+		} else {
+			listA = listA.Next
+		}
+
+		if listB == nil {
+			listB = headA
+		} else {
+			listB = listB.Next
+		}
+	}
+
+	return listA
+}
+
+func getIntersectionNode2(headA, headB *ListNode) *ListNode {
 	lenA, lenB := 0, 0
 	curA, curB := headA, headB
 	for curA != nil {
