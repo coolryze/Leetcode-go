@@ -5,35 +5,37 @@ func reverseWords(s string) string {
 
 	slow := 0
 	for fast := 0; fast < len(strBytes); fast++ {
-		if strBytes[fast] != ' ' {
-			if slow != 0 {
-				strBytes[slow] = ' '
-				slow++
-			}
+		if strBytes[fast] == ' ' {
+			continue
+		}
 
-			for fast < len(strBytes) && strBytes[fast] != ' ' {
-				strBytes[slow] = strBytes[fast]
-				slow++
-				fast++
-			}
+		if slow != 0 {
+			strBytes[slow] = ' '
+			slow++
+		}
+		for fast < len(strBytes) && strBytes[fast] != ' ' {
+			strBytes[slow] = strBytes[fast]
+			fast++
+			slow++
 		}
 	}
-	strBytes = strBytes[:slow]
-	reverseString(strBytes)
 
-	last := 0
-	for i := 0; i <= len(strBytes); i++ {
-		if i == len(strBytes) || strBytes[i] == ' ' {
-			reverseString(strBytes[last:i])
-			last = i + 1
+	strBytes = strBytes[:slow]
+	reverseStr(strBytes[:])
+
+	left := 0
+	for right := 0; right <= len(strBytes); right++ {
+		if right == len(strBytes) || strBytes[right] == ' ' {
+			reverseStr(strBytes[left:right])
+			left = right + 1
 		}
 	}
 
 	return string(strBytes)
 }
 
-func reverseString(s []byte) {
-	for l, r := 0, len(s)-1; l < r; l, r = l+1, r-1 {
-		s[l], s[r] = s[r], s[l]
+func reverseStr(bytes []byte) {
+	for i, j := 0, len(bytes)-1; i < j; i, j = i+1, j-1 {
+		bytes[i], bytes[j] = bytes[j], bytes[i]
 	}
 }
