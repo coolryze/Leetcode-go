@@ -19,8 +19,8 @@ func getMinimumDifference(root *TreeNode) int {
 		}
 
 		dfs(node.Left)
-		if prev != nil && node.Val-prev.Val < minDiff {
-			minDiff = node.Val - prev.Val
+		if prev != nil {
+			minDiff = min(minDiff, node.Val-prev.Val)
 		}
 		prev = node
 		dfs(node.Right)
