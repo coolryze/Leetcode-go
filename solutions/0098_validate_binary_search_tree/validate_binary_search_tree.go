@@ -9,10 +9,6 @@ type TreeNode struct {
 }
 
 func isValidBST(root *TreeNode) bool {
-	if root == nil {
-		return true
-	}
-
 	var check func(node *TreeNode, min, max int) bool
 	check = func(node *TreeNode, min, max int) bool {
 		if node == nil {
@@ -23,13 +19,6 @@ func isValidBST(root *TreeNode) bool {
 		}
 
 		return check(node.Left, min, node.Val) && check(node.Right, node.Val, max)
-	}
-
-	left := root.Left == nil || root.Left.Val < root.Val
-	right := root.Right == nil || root.Right.Val > root.Val
-
-	if left == false || right == false {
-		return false
 	}
 
 	return check(root, math.MinInt, math.MaxInt)
