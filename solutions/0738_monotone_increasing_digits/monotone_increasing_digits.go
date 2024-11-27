@@ -5,18 +5,16 @@ import "strconv"
 func monotoneIncreasingDigits(n int) int {
 	s := strconv.Itoa(n)
 	ss := []byte(s)
-	l := len(ss)
-	if l <= 1 {
-		return n
-	}
+	flag := len(ss)
 
-	for i := l - 1; i > 0; i-- {
+	for i := len(ss) - 1; i > 0; i-- {
 		if ss[i-1] > ss[i] {
+			flag = i
 			ss[i-1] -= 1
-			for j := i; j < l; j++ {
-				ss[j] = '9'
-			}
 		}
+	}
+	for i := flag; i < len(ss); i++ {
+		ss[i] = '9'
 	}
 
 	res, _ := strconv.Atoi(string(ss))
